@@ -1,0 +1,55 @@
+﻿
+
+
+/*for carousel*/
+
+.carousel-inner .item img {
+    height: auto;
+    width: 80%;
+    margin-left:auto;
+    margin-right:auto;
+    object-fit:contain;
+}
+/*.carousel-inner .item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 70%;
+    max-width: none;
+}*/
+    @media (max-width: 688px) {
+        .carousel-item > img {
+            max-height: 146px;
+        }
+    }
+
+    .carousel .carousel-inner .item h3 {
+    text-align: center;
+   
+}
+
+/*for image zoom*/
+* {
+    box-sizing: border-box;
+}
+
+.img-zoom-container {
+    position: relative;
+}
+
+.img-zoom-lens {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    /*set the size of the lens:*/
+    width: 40px;
+    height: 40px;
+}
+
+.img-zoom-result {
+    border: 1px solid #d4d4d4;
+    /*set the size of the result div:*/
+    width: 300px;
+    height: 300px;
+}
+

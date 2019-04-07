@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EziBuy.Models.ProductImage>
+
+
+<div class="container">
+    <div class="row">
+        <nav class="col-md-1" id="img1">
+            <ul class="nav nav-pills nav-stacked">
+                <br />
+
+                @foreach (var item in Model)
+                {
+
+                    <li>
+                        <input type="hidden" id="hiddenId" value="@item.Id" />
+                        <img onmouseover="browswImage(this);" src="@Url.Content(item.ImageUrl)" class="img-responsive img-thumbnail" style="width:100%" />
+                    </li>
+
+                }
+
+            </ul>
+        </nav>
+        <br />
+        <br />
+        <div class="col-md-5">
+
+            <img id="expandedImg" src="@Url.Content(ViewBag.defaultImage)" data-zoom="@Url.Content(ViewBag.defaultImage)" style="width:100%">
+
+        </div><!--col-md-5-->
+
+        <br />
+        <br />
+        <div class="details col-md-6">
+            @{
+                Html.RenderAction("Details", "Home");
+            }
+            <p>content</p>
+            <p>content</p>
+            <p>content</p>
+            <p>content</p>
+            <p>content</p>
+            <p>content</p>
+            <p>content</p>
+            <p>content</p>
+        </div><!--col-md-6-->
+
+
+    </div><!--row-->
+</div><!--container-->
+
+<script>
+
+    //providing where to show the zoom image to work to zoom the image initially using default url
+    new Drift(document.querySelector("#expandedImg"), {
+        paneContainer: document.querySelector(".details")
+    });
+
+</script>
+<script>
+    function browswImage(imgs) {
+        // Get the expanded image
+        var expandImg = document.getElementById("expandedImg");
+
+        // Use the same src in the expanded image as the image being clicked on from the grid
+        expandImg.src = imgs.src;
+
+        //on data-zoom function in expanded image div
+
+        var triggerEl = document.querySelector("#expandedImg");
+        var drift = new Drift(triggerEl, {
+            paneContainer: document.querySelector(".details")
+        });
+
+
+        setInterval(function () {
+            //changing url as it is saved in expandImg.src = imgs.src; initially
+
+            drift.setZoomImageURL(expandImg.src);
+            triggerEl.setAttribute("data-zoom", expandImg.src);
+        }, 100);
+
+
+    }
+
+</script>
+<link href="~/Content/EziBuy.css" rel="stylesheet" />
+<link href="~/Content/drift-basic.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/Drift.min.js"></script>

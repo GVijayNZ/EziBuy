@@ -1,0 +1,18 @@
+﻿@model IEnumerable<EziBuy.Models.ProductCategory>
+
+<nav class="col-md-3">
+
+    <ul class="nav nav-pills nav-stacked">
+        <li></li>
+        <li><h2>CATEGORY</h2></li>
+        @foreach (var item in Model)
+        {
+            <li>@Html.ActionLink(item.CategoryName, "BrowseCategoryProduct", new { categoryId=item.CategoryId})</li>
+        }
+
+        </ul>
+
+</nav>
+
+
+

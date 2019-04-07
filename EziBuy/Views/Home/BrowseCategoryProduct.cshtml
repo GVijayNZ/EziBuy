@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EziBuy.Models.ProductDetails>
+
+@{
+    ViewBag.Title = "BrowseCategoryProduct";
+}
+<link href="~/Content/EziBuy.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="row">
+
+        @*this method helps to render the CategoryNavBarList of home controllers view to left side of the page*@
+
+        @{
+            Html.RenderAction("CategoryNavBarList", "Home");
+        }
+        <div class="col-md-9">
+            <br /><br />
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="@Url.Action("ProductDescription","Home", new { productId=item.Id})" target="_blank">
+                                
+                                <img class="img-responsive" src="@Url.Content(item.ImageUrl)" alt="@item.AltText" style="width:100%;" />
+                                <div class="caption">
+                                    <p>@item.Caption</p>
+                                </div><!--caption-->
+                            </a>
+                        </div><!--thumbnail-->
+                    </div><!--col-md-3-->
+                }
+            </div><!--row-->
+        </div><!--col-md-9-->
+    </div><!--row-->
+</div><!--container-->
